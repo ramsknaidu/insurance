@@ -1,0 +1,15 @@
+<table class="table table-striped" style='height:600px'>
+  <tr></tr>
+  <tr></tr>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Mobile Number</th>
+  </tr>
+  <tr *ngFor = 'let eachAdvisor of advisorList'>
+    <td>{{eachAdvisor.id}}</td>
+    <td>{{eachAdvisor.name}}</td>
+    <td>{{eachAdvisor.mobileNumber}}</td>
+
+  </tr>
+</table>

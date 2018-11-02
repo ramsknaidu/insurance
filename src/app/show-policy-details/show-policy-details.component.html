@@ -1,0 +1,54 @@
+<a [routerLink]="['history/health']">Health Insurance</a>
+<div class='col-md-4' *ngIf='toggleForm'>
+    <form #f='ngForm' (ngSubmit)="submit(f.value)">
+  <div>
+    <label for="id">Id</label>
+    <input type="text" name='id' [(ngModel)]='policyData.id'>
+  </div>
+  <div>
+      <label for="policyHolderName">Policy Holder Name</label>
+      <input type="text" name='policyHolderName' [(ngModel)]='policyData.policyHolderName'>
+    </div>
+    <div>
+        <label for="policyAmount">Policy Amount</label>
+        <input type="text" name='policyAmount' [(ngModel)]='policyData.policyAmount'>
+      </div>
+      <div>
+          <label for="maturityDate">Maturity Date</label>
+          <input type="date" name='maturityDate' [(ngModel)]='policyData.maturityDate'>
+        </div>
+        <div>
+            <input type="submit" [value]='buttonText' class='btn btn-info'>
+          </div>
+</form>
+</div>
+
+<table class='table table-bordered table-striped'>
+  <tr>
+    <td><label>Enter the Policy Holder Name: </label></td>
+    <td><input [(ngModel)]='srchName'></td>
+    <td><button (click)='showForm()' [ngClass]="{'fa fa-2x':true,'fa-toggle-up':showUp,'fa-toggle-down':showDown}"></button></td>
+  </tr>
+  <tr>
+      <th>ID</th>
+      <th>Policy Holder Name</th>
+      <th>Policy Amount</th>
+      <th>Maturity Date</th>
+  </tr>
+  <!--<tr *ngFor='let eachPolicy of policyList'>
+    <td>{{eachPolicy.id}}</td>
+    <td>{{eachPolicy.policyHolderName | uppercase}}</td>
+    <td>{{eachPolicy.policyAmount | currency : 'INR' : 'symbol'}}</td>
+    <td>{{eachPolicy.maturityDate | date : 'medium'}}</td>
+  </tr>-->
+  <tr *ngFor="let eachPolicy of policyList | filter:'policyHolderName':srchName | paginate:{itemsPerPage:2,currentPage:page}">
+      <td>{{eachPolicy.id}}</td>
+      <td>{{eachPolicy.policyHolderName |uppercase}}</td>
+      <td>{{eachPolicy.policyAmount | currency :'INR':'symbol'}}</td>
+      <td>{{eachPolicy.maturityDate | date :'medium'}}</td>
+      <td><button class='fa fa-2x fa-edit' (click)='update(eachPolicy)'></button></td>
+      <td><button class='fa fa-2x fa-remove' (click)='remove(eachPolicy)'></button></td>
+  </tr>
+</table>
+
+<pagination-controls (pageChange)='page=$event'></pagination-controls>

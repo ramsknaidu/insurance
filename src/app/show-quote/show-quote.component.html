@@ -1,0 +1,7 @@
+<br>
+<label>Enter your age: </label>
+<input type='text' [(ngModel)]='age' (blur)='changeStatus()'>
+<input type='button' [disabled]='isDisabled' value='get quote' (click)='showPolicy()'>
+
+<p>Customer's Age: {{age}}</p>
+<p>Suggested Policy: {{suggestedpolicy}}</p>

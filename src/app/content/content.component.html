@@ -1,0 +1,19 @@
+<br>
+<br>
+<div style='background-color: aliceblue;'>
+  <h1>Our Policies</h1>
+   <div *ngFor='let eachPolicy of popularPolicyList' style='float: left; width: 33.33%; padding-left: 10px; padding-right: 10px;'>
+    
+    <div style='background-color: aliceblue;'>{{eachPolicy.policyName}}</div>
+    <div style='background-color: aqua;'>{{eachPolicy.description}}</div>
+  </div>
+</div>
+<br>
+<br>
+
+<div>
+  <h2>What our customer say</h2>
+  <p>{{feedback1}}</p>
+  <p>{{feedback2}}</p>
+  <app-testimony></app-testimony>
+</div>
